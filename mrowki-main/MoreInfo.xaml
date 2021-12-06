@@ -1,0 +1,22 @@
+﻿<Window x:Class="mrowki.MoreInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mrowki"
+        mc:Ignorable="d"
+        Title="MoreInfo" Height="484" Width="800" Background="#FF5B498B">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Height="422" Fill="White" Stroke="Black" VerticalAlignment="Center" Width="538"/>
+        <Label Content="Algorytm Genetyczny" HorizontalAlignment="Center" Margin="0,43,0,0" VerticalAlignment="Top" Height="69" Width="428" FontSize="40" FontFamily="Consolas"/>
+        <TextBlock HorizontalAlignment="Center" FontFamily="Consolas" Text="Algorytmy genetyczne są rodzajem heurystycznego przeszukiwania przestrzeni,
+zainspirowanym zjawiskiem ewolucji genetycznej. Posiadając populację o określonej
+liczebności możemy wykorzystywać i parować poszczególne osobniki w taki sposób, aby
+ostatecznie przekazać im jak najkorzystniejsze geny. W rzeczywistości korzystając z genów
+najlepszych osobników oraz wprowadzając losowe mutacje próbujemy przystosować
+osobniki do obecnego środowiska.&#xD;&#xD;W przypadku naszego zadania istotnym problemem jest nauczenie mrówek trasy
+optymalnej, pozwalającej nie tylko na przemieszczenie się między przeszkodami, ale również
+na tyle krótkiej, aby nie zdążyły się zatruć." TextWrapping="Wrap" VerticalAlignment="Top" Height="264" Width="444" Margin="0,112,0,0" FontSize="15"/>
+        <Button Content="OK" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" FontSize="20" Width="57" Height="47" Click="Button_Click"/>
+    </Grid>
+</Window>

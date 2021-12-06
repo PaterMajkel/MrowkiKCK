@@ -1,0 +1,40 @@
+﻿<Window x:Class="mrowki.ProgramWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mrowki"
+        mc:Ignorable="d"
+        Title="Mrowki" Height="450" Width="825" ResizeMode="NoResize">
+    <Grid>
+
+        <Canvas Name="Mrowisko" Background="Black" Focusable="True"  MouseDown="Mrowisko_MouseDown"
+            MouseMove="Mrowisko_MouseMove"
+            MouseUp="Mrowisko_MouseUp" Margin="0,0,185,0"
+                PreviewMouseDown="Rectangle_PreviewMouseDown" Height="435" Width="645">
+            <Ellipse Panel.ZIndex="2" Height="20" Canvas.Left="313" Name="StartPoint" Fill="Green" Canvas.Top="375" Width="20" 
+                     PreviewMouseDown="Ellipse_PreviewMouseDown"/>
+            <Ellipse Panel.ZIndex="3" Height="20" Canvas.Left="313" Name="EndPoint" Fill="Red" Canvas.Top="28" Width="20" 
+                     PreviewMouseDown="Ellipse_PreviewMouseDown"/>
+            <TextBlock Canvas.Left="573" Canvas.Top="384" Text="0" TextWrapping="Wrap" Height="40" Width="62" Name="Generation"  Foreground="White" FontSize="20" FontFamily="OCR A Std"/>
+            <TextBlock Canvas.Left="35" Canvas.Top="385" Text="0" TextWrapping="Wrap" Height="40" Width="108" x:Name="AvarageFitness"  Foreground="White" FontSize="20" FontFamily="OCR A Std"/>
+            <TextBlock Canvas.Left="35" Canvas.Top="355" Text="0" TextWrapping="Wrap" Height="40" Width="109" x:Name="BestFitness"  Foreground="White" FontSize="20" FontFamily="OCR A Std"/>
+            <TextBlock Canvas.Top="357" Text="BEST" TextWrapping="Wrap" Height="38" Width="70" Foreground="White"/>
+            <TextBlock Canvas.Top="385" Text="AVG" TextWrapping="Wrap" Height="38" Width="70" Foreground="White"/>
+            <TextBlock Canvas.Top="385" Text="LIFE" TextWrapping="Wrap" Height="38" Width="70" Foreground="White" Canvas.Left="545"/>
+        </Canvas>
+        <StackPanel Margin="660,260,10,61">
+            <Label Content="Przeszkody" FontSize="15" FontFamily="Consolas"/>
+            <RadioButton GroupName="Prostokąty" Content="Rysuj" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="Radio_draw" FontSize="15" FontFamily="Consolas"/>
+            <RadioButton GroupName="Prostokąty" Content="Usuwaj" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="Radio_delete" FontSize="15" FontFamily="Consolas"/>
+            <RadioButton GroupName="Prostokąty" Content="Wyłącz edycję" HorizontalAlignment="Left" IsChecked="True"  VerticalAlignment="Top" Checked="Radio_stop" FontSize="15" FontFamily="Consolas"/>
+        </StackPanel>
+        <Button Content="Przewiń&#xD;krok" HorizontalAlignment="Left" Margin="669,171,0,0" VerticalAlignment="Top" Width="98" Click="Step_Button" Height="41" FontSize="15" FontFamily="Consolas"/>
+        <Button Content="Przewiń&#xD;50 kroków" HorizontalAlignment="Left" Margin="670,219,0,0" VerticalAlignment="Top" Width="97" Click="Step50_Button" Height="41" FontSize="15" FontFamily="Consolas"/>
+        <TextBlock HorizontalAlignment="Left" Margin="676,345,0,0" Text="Generacja:" Name="GenCount" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15" FontFamily="Consolas" Width="91" Height="79"/>
+        <Button Content="Włącz" HorizontalAlignment="Left" Margin="672,21,0,0" VerticalAlignment="Top" Width="86" Click="GoOn" FontSize="15" FontFamily="Consolas" Height="41"/>
+        <Button Content="Zatrzymaj" HorizontalAlignment="Left" Margin="672,67,0,0" VerticalAlignment="Top" Width="86" Click="StopNow" Height="41" FontSize="15" FontFamily="Consolas"/>
+        <Label Content="Zmień prędkość" FontSize="15" FontFamily="Consolas" Margin="650,113,20,263"/>
+        <Slider HorizontalAlignment="Left" Margin="662,142,0,0" VerticalAlignment="Top" Width="106" Maximum="500" Value="200"  TickFrequency="1" IsSnapToTickEnabled="True" Name="slValue" ValueChanged="Slider_ValueChanged" Height="24"/>
+    </Grid>
+</Window>

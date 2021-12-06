@@ -1,0 +1,20 @@
+﻿<Window x:Class="mrowki.InitialSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mrowki"
+        mc:Ignorable="d"
+        Title="InitialSettings" Height="450" Width="800" Background="#FF5B498B">
+    <Grid>
+        <Rectangle HorizontalAlignment="Center" Height="363" Fill="White" Stroke="Black" VerticalAlignment="Top" Width="538" Margin="0,44,0,0"/>
+        <Label Content="Ustawienia" HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Top" Height="69" Width="230" FontSize="40" FontFamily="Consolas"/>
+        <TextBox HorizontalAlignment="Left" Margin="405,139,0,0" Name="PopSize"   TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="34" FontFamily="Consolas" FontSize="20" InputScope="Number" KeyUp="PopSize_KeyUp"/>
+        <Label Content="Wielkość Populacji" ToolTip="Wraz ze wzrostem wielkości populacji początkowej,&#xD;zwiększa się również różnorodność mrówek i jest większa szansa,&#xD;że trafi się mrówka idąca we właściwy sposób.&#xD;Wraz ze wzrostem populacji, niestety również się &#xD;zwiększa długość wykonywania algorytmu&#xD;przy każdym kroku populacji" HorizontalAlignment="Left" Margin="173,140,0,0" VerticalAlignment="Top" Width="227" FontFamily="Consolas" FontSize="20"/>
+        <Label Content="Długość życia" ToolTip="Zbyt duża ilość pozwala mrówkom biegać w nieskończoność,&#xD;bez poprawy wyniku i wydłużając czas działania programu.&#xD;Zbyt mała ilość nie pozwoli żadnej dojść do celu" HorizontalAlignment="Left" Margin="173,274,0,0" VerticalAlignment="Top" Width="227" FontFamily="Consolas" FontSize="20"/>
+        <Label Content="Szansa na mutację" ToolTip="Wraz ze wzrostem szansy na mutację,&#xD;zwiększa się szansa, że po stworzeniu nowej populacji,&#xD;powstanie mrówka, która, będzie lepiej sobie&#xD;radzić od reszty. Zbyt duża ilość sprawia, że dobre,&#xD;odziedziczone cechy zostają zmienione na inne,&#xD;zatrzymując rozwój" HorizontalAlignment="Left" Margin="173,209,0,0" VerticalAlignment="Top" Width="227" FontFamily="Consolas" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="405,209,0,0" Name="MutChance"   TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="34" FontFamily="Consolas" FontSize="20" InputScope="Number" KeyUp="MutChance_KeyUp"/>
+        <TextBox HorizontalAlignment="Left" Margin="405,274,0,0" Name="LifeLength"   TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="34" FontFamily="Consolas" FontSize="20" InputScope="Number" KeyUp="LifeLength_KeyUp"/>
+        <Button Content="Zapisz" Margin="340,335,340,52" FontFamily="Consolas" FontSize="20" Click="Button_Click"></Button>
+    </Grid>
+</Window>
