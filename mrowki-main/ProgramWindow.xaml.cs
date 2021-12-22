@@ -32,16 +32,16 @@ namespace mrowki
         {
             this.passedData = passedData;
             InitializeComponent();
-            
+
             timer.Tick += MainTimerEvent;
-            timer.Interval = TimeSpan.FromMilliseconds(0.1*howoften);
+            timer.Interval = TimeSpan.FromMilliseconds(0.1 * howoften);
             MessageBox.Show("Możesz zmienić początkowe położenie punktów przeciągając je myszką." +
                 "\nMożesz również narysować przeszkody za pomocą myszy, wybierając opcję Rysuj po prawej stronie", "Zanim Zaczniesz", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
 
-        Brush color = new SolidColorBrush(Color.FromRgb((byte)255,(byte)255,(byte)255));
+        Brush color = new SolidColorBrush(Color.FromRgb((byte)255, (byte)255, (byte)255));
         Point dragStart, offset;
         bool draw = false;
         bool del = false;
@@ -60,7 +60,7 @@ namespace mrowki
 
         private void MainTimerEvent(object sender, EventArgs e)
         {
-            if(i==timeOfLife)
+            if (i == timeOfLife)
             {
                 population.Generate();
                 i = 0;
@@ -68,20 +68,20 @@ namespace mrowki
             Generation.Text = i.ToString();
 
             population.CalcFitness();
-            
 
 
-                UnDraw();
+
+            UnDraw();
             var x = population.GetBest();
-                Draw(population.GetLocations(), x);
+            Draw(population.GetLocations(), x);
 
-            BestFitness.Text = Math.Round(population.population[x].fitness,5).ToString();
-            AvarageFitness.Text = Math.Round(population.GetAverageFitness(),5).ToString();
+            BestFitness.Text = Math.Round(population.population[x].fitness, 5).ToString();
+            AvarageFitness.Text = Math.Round(population.GetAverageFitness(), 5).ToString();
 
             population.Update(i);
-            
 
-                
+
+
             //population.NaturalSelection();
 
             if (population.finished && !goFurther)
@@ -105,6 +105,38 @@ namespace mrowki
             }
 
         }
+        private void Init()
+        {
+                Point endPoint = new Point();
+                endPoint.X = Canvas.GetLeft(EndPoint);
+                endPoint.Y = Canvas.GetTop(EndPoint);
+                AntData.target = endPoint;
+
+                Point startPoint = new Point();
+                startPoint.X = Canvas.GetLeft(StartPoint);
+                startPoint.Y = Canvas.GetTop(StartPoint);
+                AntData.start = startPoint;
+
+                AntData.mutationrate = mutationChance;
+                AntData.lifetime = timeOfLife;
+                population = new Population(mutationChance, populationCount, timeOfLife, ref rects, ref Mrowisko);
+                goFurther = false;
+
+                timer.Start();
+
+                //Window1 win1 = new Window1();
+                //win1.Show();
+
+                //Step(population);
+                /*while(!population.Finished())
+                {
+                    population.Generate();
+                    population.CalcFitness();
+                    UnDraw();
+                    Draw(population.AllLocations(), population.GetBest());
+                    Thread.Sleep(10);
+                }*/
+        }
         private void Mrowisko_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!draw)
@@ -116,7 +148,7 @@ namespace mrowki
             {
                 Stroke = Brushes.White,
                 StrokeThickness = 0,
-                Fill=color,
+                Fill = color,
             };
             Mrowisko.Children.Add(rect);
             rects.Add(rect);
@@ -156,7 +188,7 @@ namespace mrowki
                 Canvas.SetLeft(this.dragObject, position.X - this.offset.X);
             }
             else return;
-            
+
         }
 
         private void Mrowisko_MouseUp(object sender, MouseButtonEventArgs e)
@@ -194,16 +226,18 @@ namespace mrowki
             draw = false;
         }
 
-    
+
 
         private void Step_Button(object sender, RoutedEventArgs e)
         {
-                //population.Move();
-                //Thread.Sleep(1);
+            //population.Move();
+            //Thread.Sleep(1);
             Step();
         }
         private void Step()
         {
+            if (population == null)
+                return;
             //population.Generate();
             //population.CalcFitness();
             ////population.NaturalSelection();
@@ -215,7 +249,7 @@ namespace mrowki
             //if (population.finished)
             //    MessageBox.Show("Odnaleziono cel", "Cel", MessageBoxButton.OK, MessageBoxImage.Information);
             i = 0;
-            while(i<timeOfLife)
+            while (i < timeOfLife)
             {
                 if (i == 0)
                 {
@@ -225,7 +259,7 @@ namespace mrowki
 
                 population.CalcFitness();
 
-               
+
 
                 population.Update(i);
 
@@ -236,7 +270,7 @@ namespace mrowki
                 {
                     timer.Stop();
                     MessageBox.Show("Odnaleziono cel", "Cel", MessageBoxButton.OK, MessageBoxImage.Information);
-                    stop50=true;
+                    stop50 = true;
                     goFurther = true;
                 }
                 i++;
@@ -250,17 +284,17 @@ namespace mrowki
         }
         private void UnDraw()
         {
-            if(ellipses!=null)
-            foreach( var x in ellipses)
-            {
-                Mrowisko.Children.Remove(x);
-            }
+            if (ellipses != null)
+                foreach (var x in ellipses)
+                {
+                    Mrowisko.Children.Remove(x);
+                }
         }
-        private void Draw(Point[] points,int thebest)
+        private void Draw(Point[] points, int thebest)
         {
 
             ellipses = new Ellipse[population.population.Length];
-            for(int j=0; j< population.population.Length; j++)
+            for (int j = 0; j < population.population.Length; j++)
             {
                 if (j == thebest)
                 {
@@ -288,8 +322,8 @@ namespace mrowki
 
                 Mrowisko.Children.Add(ellipses[j]);
             }
-            
-                    
+
+
             GenCount.Text = String.Format($"Generacja: {population.generations}");
         }
 
@@ -297,7 +331,7 @@ namespace mrowki
         {
             stop50 = false;
 
-            for (int j=0; j<50; j++)
+            for (int j = 0; j < 50; j++)
             {
                 Step();
                 if (stop50)
@@ -312,25 +346,13 @@ namespace mrowki
         {
             if (population == null)
             {
-                mutationChance = passedData.mutChance;
+                mutationChance = (float)passedData.mutChance;
                 populationCount = passedData.popSize;
                 timeOfLife = passedData.lifeLength;
-                Point endPoint = new Point();
-                endPoint.X = Canvas.GetLeft(EndPoint);
-                endPoint.Y = Canvas.GetTop(EndPoint);
-                AntData.target = endPoint;
-
-                Point startPoint = new Point();
-                startPoint.X = Canvas.GetLeft(StartPoint);
-                startPoint.Y = Canvas.GetTop(StartPoint);
-                AntData.start = startPoint;
-
-                AntData.mutationrate = mutationChance;
-                AntData.lifetime = timeOfLife;
-                population = new Population(mutationChance, populationCount, timeOfLife, ref rects, ref Mrowisko);
-                goFurther = false;
+                this.mutationChance /= 100;
+                Init();
             }
-            
+
 
             timer.Start();
         }
@@ -353,7 +375,7 @@ namespace mrowki
             del = false;
             draw = false;
         }
-        
+
 
 
     }

@@ -43,7 +43,7 @@ namespace mrowki.genetic
             if (outofbounds)
                 fitness *= 0.2;
             if (finished)
-                fitness *= 10000;
+                fitness *= 10;
 
             return fitness;
 
